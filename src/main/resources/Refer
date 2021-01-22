@@ -1,0 +1,8 @@
+MySQL::
+======
+create database smartcontact
+show databases;
+
+for drawing ER diagram use : www.draw.io
+
+font awesome ikons 5 cdn
