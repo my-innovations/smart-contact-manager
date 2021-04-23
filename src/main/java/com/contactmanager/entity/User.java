@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
 
 	@Id
@@ -45,6 +45,9 @@ public class User {
 	private String about;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	//OR
+	/*@OneToMany(cascade = CascadeType.ALL)
+	/@JoinColumn(name = "userId")*/
 	private List<Contact> contacts = new ArrayList<>();
 
 	public User() {

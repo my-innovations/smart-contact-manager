@@ -18,7 +18,7 @@ import com.contactmanager.repository.UserRepository;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -34,26 +34,28 @@ public class UserController {
 		return "about";
 	}
 
-	@RequestMapping(value="/reg", method=RequestMethod.GET)
+	@RequestMapping(value = "/reg", method = RequestMethod.GET)
 	public String register(Model model) {
 		model.addAttribute("title", "Register");
 		model.addAttribute("user", new User());
 		return "register";
 	}
-	
-	@RequestMapping(value="/reg", method=RequestMethod.POST)
-	public String registerPost(@Valid @ModelAttribute("user") User user,BindingResult result,@RequestParam(name = "aggrement", defaultValue = "false") Boolean aggrement, HttpSession session,Model model) {
-		
+
+	@RequestMapping(value = "/reg", method = RequestMethod.POST)
+	public String registerPost(@Valid @ModelAttribute("user") User user, BindingResult result,
+			@RequestParam(name = "aggrement", defaultValue = "false") Boolean aggrement, HttpSession session,
+			Model model) {
+
 		try {
 			if (!aggrement) {
 				throw new Exception("Please accept Terms and Conditions");
 			}
-			
-			if(result.hasErrors()) {
+
+			if (result.hasErrors()) {
 				model.addAttribute("user", user);
 				return "register";
 			}
-			
+
 			user.setRoll("ROLE_USER");
 			user.setEnabled(true);
 			user.setImg("default.png");
@@ -70,13 +72,13 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value="/signin",method=RequestMethod.GET)
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("title", "Login");
 		return "login";
 	}
-	
-	@RequestMapping(value="/user/dashboard",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/user/dashboard", method = RequestMethod.GET)
 	public String loginSuccess(Model model) {
 		model.addAttribute("title", "dashboard");
 		return "user/user_dashboard";
