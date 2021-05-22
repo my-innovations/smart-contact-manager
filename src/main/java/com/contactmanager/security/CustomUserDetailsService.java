@@ -10,7 +10,7 @@ import com.contactmanager.entity.User;
 import com.contactmanager.repository.UserRepository;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
